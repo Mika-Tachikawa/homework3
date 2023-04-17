@@ -7,4 +7,15 @@ Rails.application.routes.draw do
   #「/」でトップページを表示できるようにする
   root to: 'homes#top'
   
+  #aboutのresourcesメソッド
+  #resources :abouts
+  get '/home/about' => 'homes#about' 
+  
+  #投稿のルーティングをresorcesメソッドに書き換え
+  #get 'posts/new'
+  #get 'posts/index'
+  #get 'posts/show'
+  #get 'posts/edit'
+  resources :posts, only: [:new, :index, :show, :edit]
+  
 end
