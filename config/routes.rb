@@ -23,6 +23,13 @@ Rails.application.routes.draw do
   #名前付きルート(as: '')
   get 'books/:id' => 'books#show', as: 'book'
   
+  delete 'books/:id' => 'books#destroy', as: 'destroy_book'
+  
+  #投稿のルーティングをresorcesメソッドに書き換え 
+  #get 'users/show'
+  #get 'users/edit'
+  resources :users, only: [:show, :edit]
+  
   #投稿のルーティングをresorcesメソッドに書き換え
   #get 'posts/new'
   #get 'posts/index'
