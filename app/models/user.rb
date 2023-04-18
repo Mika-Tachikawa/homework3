@@ -7,6 +7,6 @@ class User < ApplicationRecord
   #UserモデルーPostモデル　1:N（アソシエーション）
   #１ユーザーに対し複数投稿＝has_manyメソッド
   #ユーザー削除と同時に投稿記事全削除＝dependent: :destroy
-  has_many :posts, dependent: :destroy
+  has_many :books, dependent: :destroy
   
 end
