@@ -1,20 +1,21 @@
   <h1>Books</h1>
 
-
 <!-- Bookテーブルに保存された投稿データ全てを取得し、eachでBookレコード数分繰り返す -->
 <!-- book変数にデータが格納され、book.[カラム名]と記述すると、レコードのカラムの内容を表示できる -->
 <!-- book.titleと記述すると、投稿のタイトルが表示できる -->
 <!-- テーブルで表示 -->
+
   <table border="0">
-    
       <tr>
+        <th> </th>
         <th>Title</th>
         <th>Opinion</th>
       </tr>
       
       <%= @books.each do |book| %>
-      </tr>      
-        <td>
+      </tr>  
+        <td><%= image_tag book.user.get_profile_image(50,50) %></td>
+         <td>
           <!-- book.titleに詳細ページへのリンクを追加 -->
           <!-- %= link_to〜end % -->
           <%= link_to book_path(book.id) do %>

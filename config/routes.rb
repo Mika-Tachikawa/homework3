@@ -26,9 +26,8 @@ Rails.application.routes.draw do
   delete 'books/:id' => 'books#destroy', as: 'destroy_book'
   
   #投稿のルーティングをresorcesメソッドに書き換え 
-  #get 'users/show'
   #get 'users/edit'
-  resources :users, only: [:show, :edit]
+  resources :users, only: [:show, :edit, :index]
   
   #投稿のルーティングをresorcesメソッドに書き換え
   #get 'posts/new'

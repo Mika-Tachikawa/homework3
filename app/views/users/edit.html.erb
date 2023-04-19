@@ -1,2 +1,18 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h2>User info</h2>
+
+
+<%= form_with model: @user do |f| %>
+
+  <p><label for="inputName">Name</label></p>
+  <p><%= f.text_field :name, autofocus: true, id:"inputName" %></p>
+  
+  <p><label for="inputImage">Image</label></p>
+  <P><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></P>  
+
+<!-- ここにIntroductionの行を追加 -->
+  <p><label for="inputIntroduction">Introduction</label></p>
+  <P><%= f.text_area :introduction, autofocus: true, id:"inputIntroduction" %></P>    
+  
+  <p><%= f.submit "Update User" %></p>
+
+<% end %>

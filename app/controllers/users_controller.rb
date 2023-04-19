@@ -1,10 +1,17 @@
 class UsersController < ApplicationController
+  
   def show
-    #あまり自信がない、15章
     @user = User.find(params[:id]) 
     @books = @user.books
   end
 
   def edit
+    @user = User.find(params[:id]) 
   end
+  
+  def index
+    #データ全てを取得するためのインスタンス変数
+    @users = User.all
+  end
+  
 end
