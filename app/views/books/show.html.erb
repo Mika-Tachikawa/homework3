@@ -1,14 +1,19 @@
-  <table border="0">
-    <h1>Book detail</h1>
-    
+  <div class="notice">
+    <%= flash[:notice3] %>
+  </div>
+
+  <%= render'users/users', user:current_user%>
+ 
+    <table border="0">    
       </tr>      
         <td><p><%= image_tag @book.user.get_profile_image(80,80) %></p>
             <p><%= @book.user.name %></p></td>
         <td><span><%= @book.title %></span></td>
         <td><span><%= @book.opinion %></span></td>
+        <td><p><%= link_to "Edit", edit_book_path(@book.id) %></p></td>
         <td><% if @book.user_id == current_user.id %>
           <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？" %>
         <% end %></td>
       </tr>
 
-  
+    

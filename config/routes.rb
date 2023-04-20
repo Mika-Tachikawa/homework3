@@ -22,13 +22,16 @@ Rails.application.routes.draw do
   #showアクションのルーティングを追加、投稿データ別
   #名前付きルート(as: '')
   get 'books/:id' => 'books#show', as: 'book'
+  #resources使用のため下記不要？
+  #get 'books/:id/edit' => 'books#edit', as: 'edit_book'
+  patch 'books/:id' => 'books#update', as: 'update_book'
   
   delete 'books/:id' => 'books#destroy', as: 'destroy_book'
   
   #投稿のルーティングをresorcesメソッドに書き換え 
   #get 'users/edit'
   resources :users, only: [:show, :edit, :index]
-  
+  patch 'users/:id' => 'users#update', as: 'update_user'
   #投稿のルーティングをresorcesメソッドに書き換え
   #get 'posts/new'
   #get 'posts/index'

@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   end
   
   def show
-    @book = Book.find(params[:id])  
+    @book = Book.find(params[:id])
   end
 
   # 投稿データの保存
@@ -20,7 +20,7 @@ class BooksController < ApplicationController
 
   def index
     #投稿データ全てを取得するためのインスタンス変数
-    @books = Book.all  
+    @books = Book.all
   end
 
   def destroy
@@ -31,8 +31,18 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @book = Book.find(params[:id])
   end
   
+  def update
+    @book = Book.find(params[:id]) 
+    if @book.update(book_params)  # データ（レコード）を編集
+      flash[:notice3] = "You have updated book successfully."
+      redirect_to book_path(@book.id)  # 投稿詳細へリダイレクト
+    else
+      render :edit
+    end  
+  end
   # 投稿データのストロングパラメータ
   private
 

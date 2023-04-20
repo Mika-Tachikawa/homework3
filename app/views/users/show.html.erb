@@ -1,15 +1,12 @@
 <!-- ユーザーの詳細 -->
 
-<div>
-  <h1>User info</h1>
-  <!-- カリキュラムの(100,100)だとエラーになるため、それ以下で設定 -->
-      <%= image_tag @user.get_profile_image(80,80) %>
-    <h3>name <%= @user.name %></h3>
-    <h3>introduction <%= @user.introduction %></h3>
-
-
-    <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
+<!-- ユーザー情報更新完了のフラッシュメッセージ -->
+<div class="notice">
+  <%= flash[:notice2] %>
 </div>
+
+<%= render 'users', user: @user %>
+
 
 
 <!-- ユーザーの投稿一覧 -->
