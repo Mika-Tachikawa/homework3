@@ -5,27 +5,33 @@
   <%= flash[:notice2] %>
 </div>
 
-<%= render 'users', user: @user %>
-<%= render 'books/book', book: Book.new %>
 
+<div class="container">
+<div class="row">
 
+  <div class="col-lg-4" style="background-color: orange;">
+    <%= render 'users', user: @user %>
+    <%= render 'books/book', book: Book.new %>
+  </div>
 
 <!-- ユーザーの投稿一覧 -->
-<h1>Books</h1>
-
-<table border="0">
-  <tr>
-    <th> </th>
-    <th><p>Title</p></th>
-    <th><p>Opinion</p></th>
-  </tr>
- 
+  <div class="col-lg-8">
   <% @books.each do |book| %>
-  <tr>  
-      <td><%= image_tag @user.get_profile_image(80,80) %></td>
-      <td><%= link_to book_path(book.id) do %>
-          <%= book.title %>
-          <% end %></td>
-      <td><%= book.opinion %></td>
-  <% end %>
-  </tr>
+  <h1>Books</h1>
+    <table class="table table-hover">
+      <tr>
+        <th> </th>
+        <th><p>Title</p></th>
+        <th><p>Opinion</p></th>
+      </tr>
+      <tr>  
+        <td><%= image_tag @user.get_profile_image(80,80) %></td>
+          <td><%= link_to book_path(book.id) do %>
+              <%= book.title %>
+              <% end %></td>
+          <td><%= book.body %></td>
+    <% end %>
+        </tr>
+    </table>
+</div>
+</div>

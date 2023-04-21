@@ -2,14 +2,18 @@
 <!-- book変数にデータが格納され、book.[カラム名]と記述すると、レコードのカラムの内容を表示できる -->
 <!-- book.titleと記述すると、投稿のタイトルが表示できる -->
 <!-- テーブルで表示 -->
+  <div class="container">
+  <div class="row">
+    
+    <div class="col-lg-4" style="background-color: orange;">
+      <%= render'users/users', user:current_user%> 
+      <%= render 'book', book: @book%>
+    </div>
 
-  <%= render'users/users', user:current_user%> 
-  <%= render 'book', book: @book%>
-
-
-  <h1>Books</h1>
-  <% @books.each do |book| %>
-      <table border="0">
+    <div class="col-lg-8">
+      <% @books.each do |book| %>
+      <h1>Books</h1>
+      <table class="table table-hover">
         <tr>
           <th> </th>
           <th>Title</th>
@@ -25,5 +29,10 @@
             <% end %>
           <td><span><%= book.body %></span></td>
         </tr>
-  <% end %>
+      </table>
+      
+  </div>
+  </div>
+
+      <% end %>
   <%= paginate @books %>    

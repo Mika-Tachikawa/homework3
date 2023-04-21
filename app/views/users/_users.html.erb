@@ -2,7 +2,7 @@
   <h1>User info</h1>
   <!-- カリキュラムの(100,100)だとエラーになるため、それ以下で設定 -->
       <%= image_tag user.get_profile_image(50,50) %>
-    <h3>name <%= user.name %></h3>
-    <h3>introduction <%= user.introduction %></h3>
+      <h3>name <%= user.name %>
+      <h3>introduction <%= user.introduction %></h3>
     <p><%= link_to "プロフィール編集", edit_user_path(user.id) %></p>
 </div>
