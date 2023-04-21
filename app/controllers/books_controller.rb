@@ -8,19 +8,26 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
+  def index
+    #投稿データ全てを取得するためのインスタンス変数
+    @books = Book.page(params[:page])
+    @book = Book.new
+  end
+
   # 投稿データの保存
   def create
   #@いらない？アプリ開発２章の真ん中下くらい
-    book = Book.new(book_params)
-    book.user_id = current_user.id
-    book.save
+  #データを受け取り新規登録
+    @books = Book.page(params[:page])
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+  #DBに保存するsaveメソッド
+    if @book.save
   #名前付きルートの記述
-    redirect_to book_path(book.id)
-  end
-
-  def index
-    #投稿データ全てを取得するためのインスタンス変数
-    @books = Book.all
+      redirect_to book_path(@book.id)
+    else
+      render :index
+    end
   end
 
   def destroy
@@ -47,7 +54,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :opinion)
+    params.require(:book).permit(:title, :body)
   end
   
 end

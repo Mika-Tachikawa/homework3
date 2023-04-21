@@ -4,9 +4,10 @@
 <!-- テーブルで表示 -->
 
   <%= render'users/users', user:current_user%> 
+  <%= render 'book', book: @book%>
+
 
   <h1>Books</h1>
-  
   <% @books.each do |book| %>
       <table border="0">
         <tr>
@@ -22,8 +23,7 @@
             <%= link_to book_path(book.id) do %>
             <span><%= book.title %></span></td>
             <% end %>
-          <td><span><%= book.opinion %></span></td>
+          <td><span><%= book.body %></span></td>
         </tr>
-      <% end %>
-
-     
+  <% end %>
+  <%= paginate @books %>    
