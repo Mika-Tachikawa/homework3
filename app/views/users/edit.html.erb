@@ -1,18 +1,39 @@
-<h2>User info</h2>
+<div class="container">
+<div class="row">
+
+  <div class="col-lg-2">
+  </div>
+
+  <div class="col-lg-10">
+  <h1>User info</h1>
+
+ <div>
+ <% if @user.errors.any? %>
+   <%= @user.errors.count %>errors prohibited this obj from being saved:
+   <ul>
+     <% @user.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+     <% end %>
+   </ul>
+ <% end %>
+ </div>
 
 
 <%= form_with model: @user do |f| %>
 
   <p><label for="inputName">Name</label></p>
-  <p><%= f.text_field :name, autofocus: true, id:"inputName" %></p>
+  <p><%= f.text_field :name, autofocus: true, id:"inputName", size: "50" %></p>
   
   <p><label for="inputImage">Image</label></p>
   <P><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></P>  
 
 <!-- ここにIntroductionの行を追加 -->
   <p><label for="inputIntroduction">Introduction</label></p>
-  <P><%= f.text_area :introduction, autofocus: true, id:"inputIntroduction" %></P>    
+  <P><%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", size: "50" %></P>    
   
-  <p><%= f.submit "Update User" %></p>
+  <p><%= f.submit "Update User", class: "btn btn-secondary"%></p>
 
 <% end %>
+
+</div>
+</div>

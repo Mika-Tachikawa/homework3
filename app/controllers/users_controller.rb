@@ -5,6 +5,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) 
     @books = @user.books.page(params[:page])
   end
+  
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to user_path(current_user.id)
+    else
+      render :users
+    end
+  end
 
   def edit
     @user = User.find(params[:id]) 
@@ -13,8 +22,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id]) 
     if @user.update(user_params)  # データ（レコード）を編集
-      flash[:notice2] = "You have updated user successfully."
-      redirect_to user_path(@user.id)  # ユーザー画面へリダイレクト
+      redirect_to user_path(@user.id), notice: 'You have updated user successfully.'
     else
       render :edit
     end
@@ -23,6 +31,7 @@ class UsersController < ApplicationController
   def index
     #データ全てを取得するためのインスタンス変数
     @users = User.all
+    @user = User.new
   end
   
   private

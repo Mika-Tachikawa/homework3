@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   #aboutのresourcesメソッド
   #resources :abouts
-  get '/home/about' => 'homes#about' 
+  get 'about' => 'homes#about', as: 'about'
   
   #投稿のルーティングをresorcesメソッドに書き換え 
   #get 'books/new'

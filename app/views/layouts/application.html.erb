@@ -6,14 +6,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <script src="https://kit.fontawesome.com/087774b1f3.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
+  <body class="d-flex flex-column vh-100">  
+    <header class="p-0.5 mb-2 bg-dark text-white">
       <nav class="navbar navbar-expand-lg navbar-light">
+        <button type="button" class="btn btn-dark" style="margin-left: 100px;"><a class="nav-link text-white" href="/"> Bookers</a></button>
         <div class="container">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,20 +25,37 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="nav-item">
-            <%= link_to 'Bookers', '/',class: 'nav-link text-dark' %>
+              <button type="button" class="btn btn-dark"><i class="fas fa-home"></i>
+              <%= link_to 'Home', user_path(current_user.id), class: 'nav-link,fas fa-home, text-white' %></button>
             </li>
-            <li>
-            <%= link_to 'Home', user_path(current_user.id), class: 'nav-link text-dark' %>
+            <li class="nav-item">
+              <button type="button" class="btn btn-dark"><i class="fas fa-users"></i>
+              <%= link_to 'Users', '/users',class: 'nav-link,fas fa-users, text-white' %></button>
             </li>
-
-            <li>
-            <%= link_to 'Users', '/users',class: 'nav-link text-dark' %>
+            <li class="nav-item">
+              <button type="button" class="btn btn-dark"><i class="fas fa-book-open"></i>             
+              <%= link_to 'Books', '/books',class: 'nav-link,fas fa-book-open, text-white' %></button>
             </li>
-            <li>
-            <%= link_to 'Books', '/books',class: 'nav-link text-dark' %>
+            <li class="nav-item">
+              <button type="button" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link,fas fa-sign-out-alt, text-white' %>
             </li>
-            <li>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+            <% else %>
+            <li class="nav-item">
+              <button type="button" class="btn btn-dark"><i class="fas fa-home"></i>
+              <%= link_to 'Home', '/', class: 'nav-link,fas fa-home, text-white' %></button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-dark"><i class="fas fa-link"></i>
+              <%= link_to 'About', about_path, class: 'nav-link,fas fa-link, text-white' %></button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-dark"><i class="fas fa-user-plus"></i>
+              <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link,fas fa-user-plus, text-white' %></button>
+            </li>
+            <li class="nav-item">
+              <button type="button" class="btn btn-dark"><i class="fas fa-sign-in-alt"></i>
+              <%= link_to "Log in", new_user_session_path, class: 'nav-link,fas fa-sign-in-alt, text-white' %></button>
             </li>
             <% end %>
             </ul>
@@ -44,12 +63,18 @@
         </div>
       </nav>
     </header>
+    <div>
+<div class="flash-notifications">
+  <% flash.each do |key, value| %>
+   <%= content_tag(:div, value, class: key) %>
+  <% end %>
+</div>
     <main class="mb-auto">
     <%= yield %>
     </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
+    <footer class="bg-white text-dark pt-5 pb-4">
       <div class="container">
-        <div class="row no-gutters">
+         <div class="d-flex justify-content-center">
           <div class="col-md-4">
             <p>CopyRight Infratop.inc</p>
           </div>
@@ -57,5 +82,6 @@
       </div>
     </footer>
   </body>
+
 
 </html>

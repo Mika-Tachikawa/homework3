@@ -1,4 +1,3 @@
-#投稿専用画面が不要だった場合、このファイルも不要
 
 class PostsController < ApplicationController
   def new

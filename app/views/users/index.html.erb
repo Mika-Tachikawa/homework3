@@ -1,23 +1,42 @@
-<%= render 'users', user:current_user%>
-<%= render 'books/book', book: Book.new %>
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>errors prohibited this obj from being saved:
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
-<h1>Users</h1>
+  <div class="container">
+  <div class="row">
 
-<table border="0">
-  <tr>
-    <th>image</th>
-    <th>name</th>
-    <th> </th>
-  </tr>
-  
-  <% @users.each do |user| %>
-  </tr>  
-    <td><%= image_tag user.get_profile_image(50,50) %></td>
-    <td><span><%= user.name %></span></td>
-    <!-- showページへのリンク追加 -->
-    <td><%= link_to user_path(user.id) do%>
-        <span>show</span>
+    <div class="col-lg-3">
+      <%= render 'users', user:current_user%>
+      <div class="card border-0"style="padding-top: 20px;"><%= render 'books/book', book: Book.new %></div>
+    </div>
+
+  <div class="col-lg-1">
+  </div>
+
+    <div class="col-lg-8">
+      <h1>Users</h1>
+      <table class="table table-hover">
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th> </th>
+        </tr>
+        <% @users.each do |user| %>
+        <tr>  
+          <td><%= image_tag user.get_profile_image(50,50) %></td>
+          <td><span><%= user.name %></span></td>
+          <!-- showページへのリンク追加 -->
+          <td><%= link_to user_path(user.id) do%>
+          <span>show</span>
+              <% end %></td> 
+        </tr>
         <% end %>
-    </td>
-  </tr>
-  <% end %>
+      </table>
+      
+  </div>
+  </div>      

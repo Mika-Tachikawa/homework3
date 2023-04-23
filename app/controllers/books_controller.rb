@@ -25,7 +25,7 @@ class BooksController < ApplicationController
   #DBに保存するsaveメソッド
     if @book.save
   #名前付きルートの記述
-      redirect_to book_path(@book.id)
+      redirect_to book_path(@book.id), notice: 'You have created book successfully.'
     else
       render :index
     end
@@ -34,7 +34,6 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])  # データ（レコード）を1件取得
     book.destroy  # データ（レコード）を削除
-    #flash[:notice3] = "Book was successfully destroyed."
     redirect_to '/books'  # 投稿一覧画面へリダイレクト
   end
 
@@ -45,12 +44,13 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id]) 
     if @book.update(book_params)  # データ（レコード）を編集
-      flash[:notice3] = "You have updated book successfully."
-      redirect_to book_path(@book.id)  # 投稿詳細へリダイレクト
+      redirect_to book_path(@book.id), notice: 'You have updated book successfully.'
     else
       render :edit
     end  
   end
+
+
   # 投稿データのストロングパラメータ
   private
 
@@ -59,8 +59,8 @@ class BooksController < ApplicationController
   end
 
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
+    book = Book.find(params[:id])
+    unless book.user_id = current_user.id
       redirect_to '/books'
     end
   end
