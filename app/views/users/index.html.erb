@@ -10,15 +10,12 @@
   <div class="container">
   <div class="row">
 
-    <div class="col-lg-3">
+    <div class="col-md-3">
       <%= render 'users', user:current_user%>
       <div class="card border-0"style="padding-top: 20px;"><%= render 'books/book', book: Book.new %></div>
     </div>
 
-  <div class="col-lg-1">
-  </div>
-
-    <div class="col-lg-8">
+    <div class="col-md-8 offset-md-1">
       <h1>Users</h1>
       <table class="table table-hover">
         <tr>
@@ -32,10 +29,11 @@
           <td><span><%= user.name %></span></td>
           <!-- showページへのリンク追加 -->
           <td><%= link_to user_path(user.id) do%>
-          <span>show</span>
+          <span>Show</span>
               <% end %></td> 
-        </tr>
         <% end %>
+        </tr>
+
       </table>
       
   </div>

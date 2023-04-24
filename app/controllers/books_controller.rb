@@ -11,7 +11,7 @@ class BooksController < ApplicationController
 
   def index
     #投稿データ全てを取得するためのインスタンス変数
-    @books = Book.page(params[:page])
+    @books = Book.all
     @book = Book.new
   end
 
@@ -32,8 +32,8 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    book = Book.find(params[:id])  # データ（レコード）を1件取得
-    book.destroy  # データ（レコード）を削除
+    @book = Book.find(params[:id])  # データ（レコード）を1件取得
+    @book.destroy  # データ（レコード）を削除
     redirect_to '/books'  # 投稿一覧画面へリダイレクト
   end
 
@@ -60,7 +60,7 @@ class BooksController < ApplicationController
 
   def is_matching_login_user
     book = Book.find(params[:id])
-    unless book.user_id = current_user.id
+    unless book.user.id == current_user.id
       redirect_to '/books'
     end
   end
